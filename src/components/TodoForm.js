@@ -14,10 +14,13 @@ export default class TodoForm extends React.Component {
     }
 
     handleSubmit(event) {
-        event.preventDefault();
-        console.log(this.state.task);
-        this.props.addTask(this.state.task);
+        //event.preventDefault();
+        this.props.addTask(event, this.state.task);
         this.setTask('');
+    }
+
+    handleClear(event) {
+        this.props.clearCompleted(event);
     }
 
     render() {
@@ -31,6 +34,7 @@ export default class TodoForm extends React.Component {
                     onChange={event => this.setTask(event.target.value)}
                 />
                 <button type="submit">Add</button>
+                <button onClick={event => this.handleClear(event)}>Clear</button>
             </form>
         )
     }
